@@ -94,8 +94,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({ tasks, onEdit, onDelete, o
             </div>
           </div>
           <div className="grid grid-cols-7 mb-2 text-center">
-            {['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map(d => (
-              <span key={d} className="text-[9px] font-black text-slate-300 uppercase">{d}</span>
+            {['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map((d, i) => (
+              <span key={`${d}-${i}`} className="text-[9px] font-black text-slate-300 uppercase">{d}</span>
             ))}
           </div>
           <div className="grid grid-cols-7 gap-1">
@@ -143,9 +143,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({ tasks, onEdit, onDelete, o
                   const dayTasks = monthTasks.filter(t => isSameDay(new Date(t.date), day));
                   if (dayTasks.length === 0) return null;
                   const dayKey = format(day, 'yyyy-MM-dd');
-                  return (
-                    <div key={dayKey} ref={el => dayRefs.current[dayKey] = el} data-day={dayKey} className="space-y-4">
-                      <div className="flex items-center gap-4">
+                                      return (
+                                        <div key={dayKey} ref={el => { dayRefs.current[dayKey] = el; }} data-day={dayKey} className="space-y-4">
+                                          <div className="flex items-center gap-4">
+                  
                         <span className={`text-xl font-black transition-colors duration-500 ${visibleDays.includes(dayKey) ? 'text-indigo-600' : 'text-slate-900'}`}>{format(day, 'dd')}</span>
                         <div className="h-px bg-slate-100 flex-1" /><span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{format(day, "EEEE", { locale: ptBR })}</span>
                       </div>

@@ -70,6 +70,7 @@ export const LoginPage: React.FC = () => {
 
             <div className="pt-2">
               <PrimaryButton 
+                type="submit"
                 className="w-full justify-center py-5 rounded-2xl text-[11px] shadow-indigo-500/20"
                 icon={loading ? undefined : ArrowRight}
               >

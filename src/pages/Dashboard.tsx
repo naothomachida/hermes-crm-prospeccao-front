@@ -97,8 +97,8 @@ export const Dashboard: React.FC = () => {
     setFormData({ ...formData, contacts: currentContacts });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     const id = editingItem?.id || Math.random().toString(36).substr(2, 9);
     const data = { ...formData, id };
 
@@ -206,9 +206,9 @@ export const Dashboard: React.FC = () => {
                     })}
                   </div>
                 </DragDropContext>
-              )} />
-              <Route path="tarefas" element={<TasksPage tasks={tasks} onEdit={onEdit} onDelete={(id) => handleDelete(id, 'tasks')} onDuplicate={(item) => handleDuplicate(item, 'tasks')} />} />
-              <Route path="empresas" element={<CompaniesPage companies={companies} onEdit={onEdit} onDelete={handleDelete} onDuplicate={handleDuplicate} />} />
+              } />
+              <Route path="tarefas" element={<TasksPage tasks={tasks} onEdit={openEdit} onDelete={(id) => handleDelete(id, 'tasks')} onDuplicate={(item) => handleDuplicate(item, 'tasks')} />} />
+              <Route path="empresas" element={<CompaniesPage entities={companies} onEdit={openEdit} onDelete={handleDelete} onDuplicate={handleDuplicate} />} />
               <Route path="relatorios" element={<ReportsPage />} />
               <Route path="*" element={<Navigate to="negocios" replace />} />
             </Routes>

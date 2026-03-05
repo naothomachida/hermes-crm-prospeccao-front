@@ -20,11 +20,13 @@ import { CompaniesPage } from './Companies';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const STAGES = [
-  { id: 'prospect', name: 'CONTATO', color: 'border-t-blue-500' },
-  { id: 'contact', name: 'ENVIO DE APRESENTAÇÃO', color: 'border-t-indigo-500' },
-  { id: 'proposal', name: 'ENVIO DE PROPOSTA', color: 'border-t-violet-500' },
-  { id: 'followup', name: 'ACOMPANHAMENTO', color: 'border-t-purple-500' },
-  { id: 'closing', name: 'FECHAMENTO', color: 'border-t-fuchsia-500' },
+  { id: 'prospect', name: 'NOVA OPORTUNIDADE', color: 'border-t-blue-500' },
+  { id: 'contact', name: 'CONTATO REALIZADO', color: 'border-t-indigo-500' },
+  { id: 'meeting', name: 'REUNIÃO AGENDADA', color: 'border-t-sky-500' },
+  { id: 'presentation', name: 'ENVIO DE APRESENTAÇÃO', color: 'border-t-violet-500' },
+  { id: 'proposal', name: 'ENVIO DE PROPOSTA', color: 'border-t-purple-500' },
+  { id: 'followup', name: 'FUP/ACOMPANHAMENTO', color: 'border-t-fuchsia-500' },
+  { id: 'closing', name: 'FECHAMENTO', color: 'border-t-pink-500' },
 ];
 
 export const Dashboard: React.FC = () => {

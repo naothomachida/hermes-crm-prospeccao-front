@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, CheckCircle2, Clock, Users, ChevronRight, Eye } from 'lucide-react';
+import { TrendingUp, CheckCircle2, Clock, Users, ChevronRight, Eye, BarChart, Wallet } from 'lucide-react';
 import { Title, Label, IconBadge } from '../components/ui/Base';
 
 const RECENT_ACTIVITIES = [
@@ -13,21 +13,23 @@ const RECENT_ACTIVITIES = [
 export const HomePage = () => (
   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
     {/* Resumo de Métricas */}
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {[
-        { label: 'Pipeline Total', value: 'R$ 178.500', icon: TrendingUp, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { label: 'Pipeline Total', value: 'R$ 178k', icon: TrendingUp, color: 'text-blue-600', bg: 'bg-blue-50' },
         { label: 'Meta Mensal', value: '72%', icon: CheckCircle2, color: 'text-green-600', bg: 'bg-green-50' },
         { label: 'Novos Leads', value: '24', icon: Users, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+        { label: 'ROI (Média)', value: '4.2x', icon: BarChart, color: 'text-purple-600', bg: 'bg-purple-50' },
+        { label: 'LTV Projetado', value: 'R$ 12k', icon: Wallet, color: 'text-emerald-600', bg: 'bg-emerald-50' },
         { label: 'Visualizações', value: '148', icon: Eye, color: 'text-orange-600', bg: 'bg-orange-50' },
       ].map((stat, i) => (
-        <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className={`p-2 rounded-lg ${stat.bg} ${stat.color}`}>
-              <stat.icon size={18} />
+        <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center gap-3 mb-3">
+            <div className={`p-1.5 rounded-lg ${stat.bg} ${stat.color}`}>
+              <stat.icon size={16} />
             </div>
-            <Label>{stat.label}</Label>
+            <span className="text-[10px] font-black uppercase text-slate-400 tracking-wider whitespace-nowrap">{stat.label}</span>
           </div>
-          <div className="text-2xl font-black text-slate-900 tracking-tighter">{stat.value}</div>
+          <div className="text-xl font-black text-slate-900 tracking-tighter">{stat.value}</div>
         </div>
       ))}
     </div>
@@ -56,13 +58,13 @@ export const HomePage = () => (
       </div>
 
       {/* Convite / Próximos Passos */}
-      <div className="col-span-5 bg-bs-secondary rounded-2xl p-8 text-white relative overflow-hidden shadow-xl shadow-black/10">
+      <div className="col-span-5 bg-bs-primary rounded-2xl p-10 text-black relative overflow-hidden shadow-xl shadow-yellow-500/10">
         <div className="relative z-10">
           <h3 className="text-xl font-black uppercase tracking-tight mb-2">Pronto para acelerar?</h3>
-          <p className="text-gray-300 text-xs font-medium uppercase tracking-widest leading-relaxed mb-8 opacity-80">Você tem 8 leads com alta intenção de compra aguardando contato.</p>
-          <button className="bg-bs-primary text-black px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] shadow-lg hover:bg-white transition-all">Iniciar Prospecção</button>
+          <p className="text-black/60 text-[10px] font-bold uppercase tracking-widest leading-relaxed mb-10">Você tem 8 leads com alta intenção de compra aguardando contato.</p>
+          <button className="bg-black text-white px-8 py-4 rounded-lg font-black text-[10px] uppercase tracking-[0.2em] shadow-xl hover:bg-slate-800 transition-all active:scale-95">Iniciar Prospecção</button>
         </div>
-        <TrendingUp size={120} className="absolute -right-8 -bottom-8 text-white/10 rotate-12" />
+        <TrendingUp size={160} className="absolute -right-12 -bottom-12 text-black/5 rotate-12" />
       </div>
     </div>
   </motion.div>

@@ -2,12 +2,26 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MoreVertical, CheckCircle2, Calendar } from 'lucide-react';
 import { IconBadge, ViewBadge } from './Base';
+import { UserSelector } from './UserSelector';
 
 interface Lead {
-  id: string; name: string; company: string; views: number; value: number;
+  id: string; 
+  name: string; 
+  company: string; 
+  views: number; 
+  value: number;
+  ownerId?: string;
 }
 
-export const KanbanCard = ({ lead }: { lead: Lead }) => (
+export const KanbanCard = ({ 
+  lead, 
+  users = [], 
+  onUpdateOwner 
+}: { 
+  lead: Lead, 
+  users?: any[], 
+  onUpdateOwner?: (uid: string) => void 
+}) => (
   <motion.div 
     whileHover={{ y: -2 }}
     className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 cursor-pointer group hover:border-bs-primary transition-all"
@@ -30,7 +44,18 @@ export const KanbanCard = ({ lead }: { lead: Lead }) => (
 
     <div className="pt-3 border-t border-gray-50 flex items-center justify-between">
       <ViewBadge count={lead.views} />
-      <div className="w-6 h-6 rounded-full bg-slate-100 border border-white flex items-center justify-center text-[8px] font-black text-slate-400">NB</div>
+      {onUpdateOwner ? (
+        <UserSelector 
+          users={users}
+          selectedUserId={lead.ownerId}
+          onSelect={onUpdateOwner}
+          showName={false}
+        />
+      ) : (
+        <div className="w-6 h-6 rounded-full bg-slate-100 border border-white flex items-center justify-center text-[8px] font-black text-slate-400">
+          {users.find(u => u.id === lead.ownerId)?.name?.charAt(0) || 'NB'}
+        </div>
+      )}
     </div>
   </motion.div>
 );

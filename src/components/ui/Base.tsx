@@ -17,7 +17,7 @@ export const PrimaryButton = ({ children, icon: Icon, onClick, className = "", t
   <button 
     type={type}
     onClick={onClick}
-    className={`bg-indigo-600 text-white px-6 py-2 rounded-lg font-black text-[11px] uppercase tracking-widest flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 active:scale-95 ${className}`}
+    className={`bg-indigo-600 text-white px-6 py-2 rounded-lg font-black text-[11px] uppercase tracking-widest flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200 active:scale-95 ${className}`}
   >
     {Icon && <Icon size={14} />}
     {children}
@@ -29,8 +29,8 @@ export const CircularButton = ({ label, active = false, onClick }: { label: stri
     onClick={onClick}
     className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-[10px] uppercase shadow-sm border transition-all active:scale-90 ${
       active 
-        ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200' 
-        : 'bg-slate-50 text-slate-400 border-slate-100 hover:bg-slate-100'
+        ? 'bg-bs-primary text-black border-bs-primary shadow-md shadow-yellow-500/20' 
+        : 'bg-white/5 text-slate-400 border-white/10 hover:bg-white/10'
     }`}
   >
     {label}
@@ -70,14 +70,16 @@ export const Modal = ({
   title, 
   subtitle,
   children, 
-  footer 
+  footer,
+  wide = false
 }: { 
   isOpen: boolean, 
   onClose: () => void, 
   title: string, 
   subtitle?: string,
   children: React.ReactNode,
-  footer?: React.ReactNode
+  footer?: React.ReactNode,
+  wide?: boolean
 }) => (
   <AnimatePresence>
     {isOpen && (
@@ -96,12 +98,12 @@ export const Modal = ({
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="bg-white w-full max-w-lg shadow-[-20px_0_50px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col h-full relative z-10"
+          className={`bg-white w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} shadow-[-20px_0_50px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col h-full relative z-10`}
         >
           {/* Header Fixo */}
-          <div className="bg-[#1e1e2d] p-8 text-white flex justify-between items-center shrink-0">
+          <div className="bg-black p-8 text-white flex justify-between items-center shrink-0 border-b border-white/5">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-white text-lg italic">p</div>
+              <div className="w-12 h-12 rounded-2xl bg-[#FFD700] flex items-center justify-center font-black text-black text-2xl italic shadow-[0_0_20px_rgba(255,215,0,0.2)]">p</div>
               <div>
                 <Title className="text-sm text-white tracking-widest leading-none mb-1">{title}</Title>
                 {subtitle && <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{subtitle}</p>}

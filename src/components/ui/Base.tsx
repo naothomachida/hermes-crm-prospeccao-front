@@ -13,8 +13,8 @@ export const Label = ({ children, className = "" }: { children: React.ReactNode,
 );
 
 // 2. Botões
-export const PrimaryButton = ({ children, icon: Icon, onClick, className = "", type = "button" }: { children: React.ReactNode, icon?: LucideIcon, onClick?: () => void, className?: string, type?: "button" | "submit" | "reset" }) => (
-  <button 
+export const PrimaryButton = ({ children, icon: Icon, onClick, className = "", type = "button" }: { children: React.ReactNode, icon?: LucideIcon, onClick?: (e?: any) => void, className?: string, type?: "button" | "submit" | "reset" }) => (
+  <button
     type={type}
     onClick={onClick}
     className={`bg-indigo-600 text-white px-6 py-2 rounded-lg font-black text-[11px] uppercase tracking-widest flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200 active:scale-95 ${className}`}
@@ -24,12 +24,12 @@ export const PrimaryButton = ({ children, icon: Icon, onClick, className = "", t
   </button>
 );
 
-export const CircularButton = ({ label, active = false, onClick }: { label: string, active?: boolean, onClick?: () => void }) => (
-  <button 
+export const CircularButton = ({ label, active = false, onClick }: { label: string, active?: boolean, onClick?: (e?: any) => void }) => (
+  <button
     onClick={onClick}
     className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-[10px] uppercase shadow-sm border transition-all active:scale-90 ${
-      active 
-        ? 'bg-bs-primary text-black border-bs-primary shadow-md shadow-yellow-500/20' 
+      active
+        ? 'bg-bs-primary text-black border-bs-primary shadow-md shadow-yellow-500/20'
         : 'bg-white/5 text-slate-400 border-white/10 hover:bg-white/10'
     }`}
   >
@@ -37,10 +37,10 @@ export const CircularButton = ({ label, active = false, onClick }: { label: stri
   </button>
 );
 
-export const IconButton = ({ icon: Icon, active = false, onClick, badge }: { icon: LucideIcon, active?: boolean, onClick?: () => void, badge?: string | number }) => (
-  <button 
+export const IconButton = ({ icon: Icon, active = false, onClick, badge, className = "" }: { icon: LucideIcon, active?: boolean, onClick?: (e?: any) => void, badge?: string | number, className?: string }) => (
+  <button
     onClick={onClick}
-    className={`p-2 rounded-lg transition-all relative ${active ? 'bg-indigo-100 text-indigo-600' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`}
+    className={`p-2 rounded-lg transition-all relative ${active ? 'bg-indigo-100 text-indigo-600' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'} ${className}`}
   >
     <Icon size={18} />
     {badge && (
@@ -48,7 +48,6 @@ export const IconButton = ({ icon: Icon, active = false, onClick, badge }: { ico
     )}
   </button>
 );
-
 // 3. Badges e Ícones de Card
 export const IconBadge = ({ icon: Icon, colorClass = "bg-blue-50 text-blue-600" }: { icon: LucideIcon, colorClass?: string }) => (
   <div className={`p-1.5 rounded-lg ${colorClass}`}>

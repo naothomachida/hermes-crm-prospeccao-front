@@ -51,6 +51,15 @@ export const Dashboard: React.FC = () => {
     { id: 't19', title: 'Auditoria Interna', company: 'BSIT Interno', date: new Date(2026, 1, 27, 14, 0), priority: 'high' },
   ]);
 
+  const [users] = useState<any[]>([
+    { id: 'u1', name: 'Gustavo U.', role: 'Admin', avatar: 'https://i.pravatar.cc/150?u=u1' },
+    { id: 'u2', name: 'Ana Silva', role: 'Commercial', avatar: 'https://i.pravatar.cc/150?u=u2' },
+  ]);
+
+  const handleUpdateTaskOwner = (taskId: string, userId: string) => {
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, userId } : t));
+  };
+
   // --- CRUD LOGIC ---
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -209,7 +218,7 @@ export const Dashboard: React.FC = () => {
                   </div>
                 </DragDropContext>
               } />
-              <Route path="tarefas" element={<TasksPage tasks={tasks} onEdit={openEdit} onDelete={(id) => handleDelete(id, 'tasks')} onDuplicate={(item) => handleDuplicate(item, 'tasks')} />} />
+              <Route path="tarefas" element={<TasksPage tasks={tasks} users={users} onUpdateTaskOwner={handleUpdateTaskOwner} onEdit={openEdit} onDelete={(id) => handleDelete(id, 'tasks')} onDuplicate={(item) => handleDuplicate(item, 'tasks')} />} />
               <Route path="empresas" element={<CompaniesPage entities={companies} onEdit={openEdit} onDelete={handleDelete} onDuplicate={handleDuplicate} />} />
               <Route path="relatorios" element={<ReportsPage />} />
               <Route path="*" element={<Navigate to="negocios" replace />} />

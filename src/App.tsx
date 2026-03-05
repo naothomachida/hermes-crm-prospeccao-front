@@ -303,7 +303,7 @@ const DashboardLayout = ({
 
   const handleUpdateMyProfile = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUsers(prev => prev.map(u => u.id === 'u1' ? { ...u, ...formData } : u));
+    setUsers((prev: any[]) => prev.map((u: any) => u.id === 'u1' ? { ...u, ...formData } : u));
     setIsProfileOpen(false);
   };
 
@@ -434,7 +434,7 @@ const DashboardLayout = ({
                 
                 <button 
                   onClick={() => {
-                    const me = users.find(u => u.id === 'u1');
+                    const me = users.find((u: any) => u.id === 'u1');
                     setFormData(me || {});
                     setModalType('');
                     setIsProfileOpen(true);
@@ -442,8 +442,8 @@ const DashboardLayout = ({
                   className="group flex flex-col items-center gap-2"
                 >
                   <div className="w-10 h-10 rounded-[14px] bg-slate-900 flex items-center justify-center text-[10px] font-black text-white border border-white/10 group-hover:border-bs-primary transition-all shadow-lg overflow-hidden relative">
-                    {users.find(u => u.id === 'u1')?.avatar ? (
-                      <img src={users.find(u => u.id === 'u1')?.avatar} className="w-full h-full object-cover" alt="" />
+                    {users.find((u: any) => u.id === 'u1')?.avatar ? (
+                      <img src={users.find((u: any) => u.id === 'u1')?.avatar} className="w-full h-full object-cover" alt="" />
                     ) : (
                       'GU'
                     )}
@@ -451,7 +451,7 @@ const DashboardLayout = ({
                   </div>
                   {isSidebarExpanded && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-                      <p className="text-[9px] font-black text-white uppercase leading-none">{users.find(u => u.id === 'u1')?.name.split(' ')[0]}</p>
+                      <p className="text-[9px] font-black text-white uppercase leading-none">{users.find((u: any) => u.id === 'u1')?.name.split(' ')[0]}</p>
                       <p className="text-[7px] font-bold text-slate-600 uppercase tracking-widest mt-1">Admin</p>
                     </motion.div>
                   )}
@@ -607,7 +607,7 @@ const DashboardLayout = ({
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 border-4 border-white rounded-full" />
           </div>
           <div className="text-center">
-            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">{users.find(u => u.id === 'u1')?.name}</h3>
+            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">{users.find((u: any) => u.id === 'u1')?.name}</h3>
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Administrador • BSIT</p>
           </div>
           <div className="w-full space-y-4 pt-4">
@@ -617,7 +617,7 @@ const DashboardLayout = ({
             </div>
             <div className="p-4 bg-slate-50 rounded-2xl border border-gray-100">
               <Label className="block mb-1">E-mail corporativo</Label>
-              <p className="text-xs font-bold text-slate-700">{users.find(u => u.id === 'u1')?.email}</p>
+              <p className="text-xs font-bold text-slate-700">{users.find((u: any) => u.id === 'u1')?.email}</p>
             </div>
           </div>
         </div>

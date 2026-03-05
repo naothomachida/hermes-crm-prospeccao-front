@@ -49,7 +49,7 @@ export const KanbanCard = ({
           users={users}
           selectedUserId={lead.ownerId}
           onSelect={onUpdateOwner}
-          showName={false}
+          showName={true}
         />
       ) : (
         <div className="w-6 h-6 rounded-full bg-slate-100 border border-white flex items-center justify-center text-[8px] font-black text-slate-400">

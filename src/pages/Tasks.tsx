@@ -236,7 +236,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({ tasks, users, onUpdateTask
                                   users={users}
                                   selectedUserId={task.userId}
                                   onSelect={(uid) => onUpdateTaskOwner(task.id, uid)}
-                                  showName={false}
+                                  showName={true}
                                 />
                               </div>
                               <div className="flex opacity-0 group-hover:opacity-100 transition-opacity">

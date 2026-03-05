@@ -32,6 +32,14 @@ export const UserSelector: React.FC<UserSelectorProps> = ({
 
   const selectedUser = users.find(u => u.id === selectedUserId);
 
+  const formatName = (fullName: string) => {
+    const parts = fullName.trim().split(/\s+/);
+    if (parts.length <= 1) return fullName;
+    const firstName = parts[0];
+    const lastInitial = parts[parts.length - 1].charAt(0).toUpperCase();
+    return `${firstName} ${lastInitial}.`;
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -51,7 +59,10 @@ export const UserSelector: React.FC<UserSelectorProps> = ({
     <div className={`relative ${className}`} ref={containerRef}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(!isOpen);
+        }}
         className="flex items-center gap-2 group hover:opacity-80 transition-opacity"
       >
         <div className="w-6 h-6 rounded-full bg-slate-100 border border-white shadow-sm flex items-center justify-center overflow-hidden shrink-0">
@@ -63,7 +74,7 @@ export const UserSelector: React.FC<UserSelectorProps> = ({
         </div>
         {showName && (
           <span className={`text-[10px] font-black uppercase tracking-widest ${selectedUser ? 'text-slate-700' : 'text-slate-400'}`}>
-            {selectedUser?.name || placeholder}
+            {selectedUser ? formatName(selectedUser.name) : placeholder}
           </span>
         )}
       </button>
